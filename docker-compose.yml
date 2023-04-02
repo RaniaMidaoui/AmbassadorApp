@@ -1,0 +1,88 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:13
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: sadok
+      POSTGRES_PASSWORD: azerty
+      POSTGRES_DB: nest
+    volumes:
+      - .dbata:/var/lib/postgres
+    networks:
+      - net
+
+  redis:
+    image: redis:latest
+    ports:
+    - 6379:6379
+    networks:
+    - net
+
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+    - 1025:1025
+    - 8025:8025
+    networks:
+      - net
+
+  backend:
+    container_name: backend-app
+    image: raniamidaoui/backend-app
+    build:
+      context: ./Ambassador_App_NestJs-main/Ambassador_App_NestJs-main
+    volumes:
+      - ./Ambassador_App_NestJs-main/Ambassador_App_NestJs-main/src:/backend/src
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    networks:
+      - net
+  
+  nextfront:
+    image: raniamidaoui/nextfront
+    build:
+      context: ./Ambassador_App_Frontend-main/Ambassador_App_Frontend-main/next-checkout
+    volumes:
+      - ./Ambassador_App_Frontend-main/Ambassador_App_Frontend-main/next-checkout/src:/app/src
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - net
+
+  adminfront:
+    container_name: admin-app-dev
+    image: raniamidaoui/admin-app-dev
+    build:
+      context: ./Ambassador_App_Frontend-main/Ambassador_App_Frontend-main/react-admin
+    volumes:
+      - ./Ambassador_App_Frontend-main/Ambassador_App_Frontend-main/react-admin/src:/adminfront/src
+    ports:
+      - 5200:5200  
+    depends_on:
+      - backend
+    networks:
+      - net
+
+  ambassadorfront:
+    container_name: ambass-app-dev
+    image: raniamidaoui/ambass-app-dev
+
+    build:
+      context: ./Ambassador_App_Frontend-main/Ambassador_App_Frontend-main/react-ambassador
+    volumes:
+      - ./Ambassador_App_Frontend-main/Ambassador_App_Frontend-main/react-ambassador/src:/ambassfront/src
+    ports:
+      - 4000:4000  
+    depends_on:
+      - backend
+    networks:
+      - net
+
+networks:
+    net:  
