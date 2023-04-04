@@ -46,6 +46,7 @@ services:
     image: raniamidaoui/nextfront
     build:
       context: ./Ambassador_App_Frontend-main/Ambassador_App_Frontend-main/next-checkout
+      target: runner
     volumes:
       - ./Ambassador_App_Frontend-main/Ambassador_App_Frontend-main/next-checkout/src:/app/src
     ports:
@@ -54,6 +55,8 @@ services:
       - backend
     networks:
       - net
+    environment:
+      NODE_ENV: development
 
   adminfront:
     container_name: admin-app-dev

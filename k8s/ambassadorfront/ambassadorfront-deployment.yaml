@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ambassadorfront
+  labels:
+    app: ambassador
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ambassador
+  template:
+    metadata:
+      labels:
+        app: ambassador
+    spec:
+      containers:
+      - name: ambass-app-dev
+        image: raniamidaoui/ambass-app-dev
+        ports:
+        - containerPort: 4000
