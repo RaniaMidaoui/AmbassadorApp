@@ -5,11 +5,12 @@ metadata:
 spec:
   storageClassName: local-storage
   capacity:
-    storage: 2Gi
+    storage: 500M
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   hostPath:
-    path: /tmp/hostpath-provisioner/default/db-persistent-volume-claim
+    path: "/tmp/hostpath-provisioner/db-persistent-volume-claim"
+    type: DirectoryOrCreate
 
 ---
 
@@ -20,7 +21,7 @@ metadata:
 spec:
   storageClassName: local-storage
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   resources:
     requests:
-      storage: 2Gi
+      storage: 500M
