@@ -3,7 +3,7 @@ services:
   db:
     image: postgres:13
     ports:
-      - 5432:5432
+      - 5434:5432
     environment:
       POSTGRES_USER: sadok
       POSTGRES_PASSWORD: azerty
@@ -30,7 +30,7 @@ services:
 
   backend:
     container_name: backend-app
-    image: raniamidaoui/backend-app
+    image: sadook/backend_api
     build:
       context: ./Ambassador_App_NestJs-main/Ambassador_App_NestJs-main
     volumes:
