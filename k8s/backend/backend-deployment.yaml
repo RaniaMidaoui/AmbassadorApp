@@ -23,7 +23,7 @@ spec:
           - name: DB_HOST
             value: db
           - name: DB_PORT
-            value: 5432
+            value: '5432'
           - name: DB_USER
             value: sadok
           - name: DB_PASSWORD
@@ -33,10 +33,10 @@ spec:
           - name: REDIS_HOST
             value: redis
           - name: REDIS_PORT
-            value: 6379
+            value: '6379'
           - name: MAILHOG_HOST
             value: mailhog
           - name: MAILHOG_PORT
-            value: 1025
+            value: '1025'
           - name: MAILHOG_EMAIL
             value: no-reply@example.com
