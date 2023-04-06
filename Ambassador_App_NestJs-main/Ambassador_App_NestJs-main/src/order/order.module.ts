@@ -24,11 +24,11 @@ import { ProductEntity } from 'src/product/entities/product.entity';
           }),
           MailerModule.forRoot({
               transport: {
-                  host: 'mailhog',
-                  port: 1025
+                  host: process.env.MAILHOG_HOST,
+                  port: +process.env.MAILHOG_PORT
               },
               defaults: {
-                  from: 'no-reply@example.com'
+                  from: process.env.MAILHOG_EMAIL
               }
           })],
   controllers: [OrderController],
