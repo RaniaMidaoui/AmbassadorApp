@@ -33,6 +33,7 @@ services:
     image: sadook/backend_api
     build:
       context: ./Ambassador_App_NestJs-main/Ambassador_App_NestJs-main
+      Dockerfile: Dockerfile.prod
     volumes:
       - ./Ambassador_App_NestJs-main/Ambassador_App_NestJs-main/src:/backend/src
     ports:
