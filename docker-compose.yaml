@@ -29,10 +29,12 @@ services:
       - net
 
   backend:
-    container_name: backend-app
-    image: sadook/backend_api
+    container_name: backend
+    image: raniamidoaui/backend
+    
     build:
       context: ./Ambassador_App_NestJs-main/Ambassador_App_NestJs-main
+      dockerfile: Dockerfile.prod
     volumes:
       - ./Ambassador_App_NestJs-main/Ambassador_App_NestJs-main/src:/backend/src
     ports:
@@ -57,6 +59,7 @@ services:
     image: raniamidaoui/nextfront
     build:
       context: ./Ambassador_App_Frontend-main/Ambassador_App_Frontend-main/next-checkout
+      dockerfile: Dockerfile
       target: runner
     volumes:
       - ./Ambassador_App_Frontend-main/Ambassador_App_Frontend-main/next-checkout/src:/app/src
@@ -74,6 +77,7 @@ services:
     image: raniamidaoui/admin-app-dev
     build:
       context: ./Ambassador_App_Frontend-main/Ambassador_App_Frontend-main/react-admin
+      dockerfile: Dockerfile
     volumes:
       - ./Ambassador_App_Frontend-main/Ambassador_App_Frontend-main/react-admin/src:/adminfront/src
     ports:
@@ -89,6 +93,7 @@ services:
 
     build:
       context: ./Ambassador_App_Frontend-main/Ambassador_App_Frontend-main/react-ambassador
+      dockerfile: Dockerfile
     volumes:
       - ./Ambassador_App_Frontend-main/Ambassador_App_Frontend-main/react-ambassador/src:/ambassfront/src
     ports:
