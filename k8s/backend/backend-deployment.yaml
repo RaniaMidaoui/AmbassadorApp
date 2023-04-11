@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: raniamidoaui/backend
+        image: raniamidaoui/backend
         ports:
         - containerPort: 8000
         env:
