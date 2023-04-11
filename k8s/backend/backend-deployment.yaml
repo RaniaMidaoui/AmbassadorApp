@@ -15,8 +15,8 @@ spec:
         app: backend
     spec:
       containers:
-      - name: backend-app
-        image: sadook/backend_api
+      - name: backend
+        image: raniamidoaui/backend
         ports:
         - containerPort: 8000
         env:
