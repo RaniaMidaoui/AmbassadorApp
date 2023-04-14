@@ -1,34 +1,26 @@
-apiVersion: networking.k8s.io/v1 
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ingress-service
   annotations:
-    kubernetes.io/ingress.class: "nginx"
-    nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/rewrite-target: /$1
+  name: ingress-app
 spec:
+  ingressClassName: nginx
   rules:
-    - host: ambassadorapp.info
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: ambassadorfront
-                port:
-                  number: 4000 
-          - path: /admin
-            pathType: Prefix
-            backend:
-              service:
-                name: adminfront
-                port:
-                  number: 5200
-          - path: /next
-            pathType: Prefix
-            backend:
-              service:
-                name: nextfront
-                port:
-                  number: 3000
+  - host: ambassadorapp.com
+    http:
+      paths:
+      - path: /admin/?(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: adminfront
+            port:
+              number: 5200
+      - path: /ambassador/?(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: ambassadorfront
+            port:
+              number: 4000
