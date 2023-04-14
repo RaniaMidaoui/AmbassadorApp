@@ -3,9 +3,9 @@ kind: Service
 metadata:
   name: ambassadorfront
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
     app: ambassador
   ports:
     - port: 4000
-      targetPort: 4000
+      targetPort: 80

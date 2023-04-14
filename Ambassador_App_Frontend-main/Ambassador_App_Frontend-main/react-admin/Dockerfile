@@ -1,5 +1,5 @@
-FROM node:16.17.1 AS development
-ENV NODE_ENV development
+FROM node:16-alpine AS development
+ENV NODE_ENV production
 
 WORKDIR /adminfront
 
@@ -8,6 +8,13 @@ RUN npm install --force
 
 COPY . .
 
-EXPOSE 5200
+RUN npm run build --force
 
-CMD [ "npm", "start" ]
+FROM nginx:alpine
+
+COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
+
+COPY --from=development /adminfront/build /usr/share/nginx/html
+
+EXPOSE 80
+ENTRYPOINT ["nginx", "-g", "daemon off;"]

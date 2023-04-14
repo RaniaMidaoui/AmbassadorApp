@@ -18,4 +18,4 @@ spec:
       - name: ambass-app-dev
         image: raniamidaoui/ambass-app-dev
         ports:
-        - containerPort: 4000
+        - containerPort: 80

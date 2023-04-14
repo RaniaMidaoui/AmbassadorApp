@@ -8,6 +8,13 @@ RUN npm install --force
 
 COPY . .
 
-EXPOSE 4000
+RUN npm run build --force
 
-CMD [ "npm", "start" ]
+FROM nginx:alpine
+
+COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
+
+COPY --from=development /ambassfront/build /usr/share/nginx/html
+
+EXPOSE 80
+ENTRYPOINT ["nginx", "-g", "daemon off;"]

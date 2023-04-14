@@ -18,4 +18,4 @@ spec:
       - name: admin-app-dev
         image: raniamidaoui/admin-app-dev
         ports:
-        - containerPort: 5200
+        - containerPort: 80

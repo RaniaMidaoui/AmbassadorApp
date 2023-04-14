@@ -3,9 +3,9 @@ kind: Service
 metadata:
   name: adminfront
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
     app: admin
   ports:
     - port: 5200
-      targetPort: 5200
+      targetPort: 80
