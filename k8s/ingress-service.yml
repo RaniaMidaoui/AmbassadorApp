@@ -7,20 +7,24 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: ambassadorapp.com
+  - host: ambassadorapp.northeurope.cloudapp.azure.com
     http:
       paths:
-      - path: /admin/?(.*)
+      - path: /
         pathType: Prefix
         backend:
           service:
             name: adminfront
             port:
               number: 5200
-      - path: /ambassador/?(.*)
-        pathType: Prefix
-        backend:
-          service:
-            name: ambassadorfront
-            port:
-              number: 4000
+#  - host: ambassador.ambassadorapp.northeurope.cloudapp.azure.com
+#    http:
+#      paths:
+#      - path: /
+#        pathType: Prefix
+#        backend:
+#          service:
+#            name: ambassadorfront
+#            port:
+#              number: 4000
+        
