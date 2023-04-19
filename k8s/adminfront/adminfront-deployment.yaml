@@ -5,7 +5,7 @@ metadata:
   labels:
     app: admin
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: admin
@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: admin-app-dev
-        image: raniamidaoui/admin-app-dev
+        image: sadook/admin_app
         ports:
         - containerPort: 80

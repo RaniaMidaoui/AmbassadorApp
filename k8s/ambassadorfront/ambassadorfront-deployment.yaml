@@ -5,7 +5,7 @@ metadata:
   labels:
     app: ambassador
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: ambassador
@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: ambass-app-dev
-        image: raniamidaoui/ambass-app-dev
+        image: sadook/ambassador_app
         ports:
         - containerPort: 80

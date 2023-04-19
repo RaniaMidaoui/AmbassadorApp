@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend
+  name: api
   labels:
-    app: backend
+    app: api
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: backend
+      app: api
   template:
     metadata:
       labels:
-        app: backend
+        app: api
     spec:
       containers:
-      - name: backend
-        image: raniamidaoui/backend
+      - name: api
+        image: sadook/backend_api
         ports:
         - containerPort: 8000
         env:
