@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: ambassadorfront
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: ambassador
   ports:
