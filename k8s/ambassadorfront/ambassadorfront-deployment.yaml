@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: ambass-app-dev
-        image: raniamidaoui/ambass-app-dev
+        image: sadook/ambassador_app
         ports:
         - containerPort: 80
