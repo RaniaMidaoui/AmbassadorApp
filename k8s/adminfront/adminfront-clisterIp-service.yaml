@@ -7,5 +7,6 @@ spec:
   selector:
     app: admin
   ports:
-    - port: 5200
+    - port: 80
+      protocol: TCP
       targetPort: 80
