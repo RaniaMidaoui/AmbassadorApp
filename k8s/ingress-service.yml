@@ -16,7 +16,7 @@ spec:
           service:
             name: adminfront
             port:
-              number: 5200
+              number: 80
 #  - host: ambassador.ambassadorapp.northeurope.cloudapp.azure.com
 #    http:
 #      paths:
