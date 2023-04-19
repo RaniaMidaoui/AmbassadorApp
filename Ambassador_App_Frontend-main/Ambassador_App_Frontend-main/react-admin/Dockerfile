@@ -1,20 +1,22 @@
-FROM node:16-alpine AS development
-ENV NODE_ENV production
+FROM --platform=amd64 node:16 as builder
+COPY package*.json  ./
 
-WORKDIR /adminfront
+RUN npm install --force && mkdir /app && mv ./node_modules ./app
 
-COPY package*.json ./
-RUN npm install --force
+WORKDIR /app
 
 COPY . .
 
-RUN npm run build --force
+RUN npm run build
 
-FROM nginx:alpine
+FROM --platform=amd64 nginx:alpine
 
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 
-COPY --from=development /adminfront/build /usr/share/nginx/html
+RUN rm -rf /usr/share/nginx/html/*
+
+COPY --from=builder /app/build /usr/share/nginx/html
 
 EXPOSE 80
+
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
