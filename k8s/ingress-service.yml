@@ -2,12 +2,17 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt
   name: ingress-app
 spec:
-  ingressClassName: nginx
+  tls:  
+  - hosts:
+    - admin.ambassamart.store
+    - ambassador.ambassamart.store
+    secretName: tls-secret
   rules:
-  - host: ambassadorapp.northeurope.cloudapp.azure.com
+  - host: admin.ambassamart.store
     http:
       paths:
       - path: /
@@ -17,14 +22,14 @@ spec:
             name: adminfront
             port:
               number: 80
-#  - host: ambassador.ambassadorapp.northeurope.cloudapp.azure.com
-#    http:
-#      paths:
-#      - path: /
-#        pathType: Prefix
-#        backend:
-#          service:
-#            name: ambassadorfront
-#            port:
-#              number: 4000
+  - host: ambassador.ambassamart.store
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: ambassadorfront
+            port:
+              number: 80
         
