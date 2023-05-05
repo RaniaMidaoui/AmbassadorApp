@@ -73,8 +73,8 @@ services:
       NODE_ENV: development
 
   adminfront:
-    container_name: admin-app-dev
-    image: raniamidaoui/admin-app-dev
+    container_name: admin-app
+    image: raniamidaoui/admin-app
     build:
       context: ./Ambassador_App_Frontend-main/Ambassador_App_Frontend-main/react-admin
       dockerfile: Dockerfile
@@ -88,8 +88,8 @@ services:
       - net
 
   ambassadorfront:
-    container_name: ambass-app-dev
-    image: raniamidaoui/ambass-app-dev
+    container_name: ambass-app
+    image: raniamidaoui/ambass-app
 
     build:
       context: ./Ambassador_App_Frontend-main/Ambassador_App_Frontend-main/react-ambassador

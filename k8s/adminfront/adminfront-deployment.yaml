@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: admin-app-dev
-        image: sadook/admin_app
+        image: raniamidaoui/admin-app
         ports:
         - containerPort: 80
