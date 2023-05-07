@@ -3,14 +3,11 @@ $AKS_NAME='pfacluster'
 $LOCATION='northeurope'
 $NODE_SIZE='Standard_B2s'
 $DEPLOYMENT_NAME='pfacluster'
+$SUBSCRIPTION_NAME='AzureForStudents'
 $CUSTOM_DOMAIN='ambassamart.store'
-$INGRESS_NAMESPCAE='ingress-basic'
+$INGRESS_NAMESPCAE='default'
 
-$TENANT_ID=$(az account show --subscription "Azure pour les étudiants" --query tenantId --output tsv)
-echo $TENANT_ID
-$SUBSCRIPTION_ID=$(az account show --query id -o tsv)
-$USER_CLIENT_ID=$(az aks show --name $DEPLOYMENT_NAME --resource-group $RESOURCE_GROUP_NAME --query identityProfile.kubeletidentity.clientId -o tsv)
-
+az login
 # Create the resource group
 az group create --name $RESOURCE_GROUP_NAME --location $LOCATION
 
@@ -25,7 +22,7 @@ az aks get-credentials --resource-group $RESOURCE_GROUP_NAME --name $DEPLOYMENT_
 az network dns zone create -g $RESOURCE_GROUP_NAME -n $CUSTOM_DOMAIN
 
 # Create a namespace for ingress resources
-kubectl create namespace $INGRESS_NAMESPCAE
+#kubectl create namespace $INGRESS_NAMESPCAE
 
 # Add the Helm repository
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
@@ -35,6 +32,10 @@ helm repo update
 helm install ingress-nginx ingress-nginx/ingress-nginx --namespace $INGRESS_NAMESPCAE --set controller.replicaCount=2
 
 # Assign managed identity of cluster’s node pools DNS Zone Contributor rights on to Custom Domain DNS zone.
+$TENANT_ID=$(az account show --subscription $SUBSCRIPTION_NAME --query tenantId --output tsv)
+echo $TENANT_ID
+$SUBSCRIPTION_ID=$(az account show --query id -o tsv)
+$USER_CLIENT_ID=$(az aks show --name $DEPLOYMENT_NAME --resource-group $RESOURCE_GROUP_NAME --query identityProfile.kubeletidentity.clientId -o tsv)
 $DNSID=$(az network dns zone show --name $CUSTOM_DOMAIN --resource-group $RESOURCE_GROUP_NAME --query id -o tsv)
 az role assignment create --assignee $USER_CLIENT_ID --role 'DNS Zone Contributor' --scope $DNSID
 
@@ -60,10 +61,10 @@ helm install cert-manager jetstack/cert-manager --namespace $INGRESS_NAMESPCAE -
 kubectl apply -f ../k8s/cluster-issuer.yaml --namespace $INGRESS_NAMESPCAE
 
 # Generete a secret:
-kubectl create secret generic pgpassword --from-literal PGPASSWORD=
+kubectl create secret generic pgpassword --from-literal PGPASSWORD=azerty --namespace $INGRESS_NAMESPCAE
 
 # Deploy app
-kubectl apply -Rf ..\k8s
+kubectl apply -Rf ..\k8s --namespace $INGRESS_NAMESPCAE
 
 
 
