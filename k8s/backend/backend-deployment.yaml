@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: sadook/backend_api
+        image: raniamidaoui/backend
         ports:
         - containerPort: 8000
         env:

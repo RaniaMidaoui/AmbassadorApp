@@ -2,15 +2,10 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
-    kubernetes.io/ingress.class: nginx
-    cert-manager.io/cluster-issuer: letsencrypt
+    nginx.ingress.kubernetes.io/rewrite-target: /
   name: ingress-app
 spec:
-  tls:  
-  - hosts:
-    - admin.ambassamart.store
-    - ambassador.ambassamart.store
-    secretName: tls-secret
+  ingressClassName: nginx
   rules:
   - host: admin.ambassamart.store
     http:
@@ -32,4 +27,3 @@ spec:
             name: ambassadorfront
             port:
               number: 80
-        

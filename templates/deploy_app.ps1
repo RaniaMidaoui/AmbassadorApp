@@ -24,12 +24,7 @@ az network dns zone create -g $RESOURCE_GROUP_NAME -n $CUSTOM_DOMAIN
 # Create a namespace for ingress resources
 #kubectl create namespace $INGRESS_NAMESPCAE
 
-# Add the Helm repository
-helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-helm repo update
-
-# Deploy an NGINX ingress controller
-helm install ingress-nginx ingress-nginx/ingress-nginx --namespace $INGRESS_NAMESPCAE --set controller.replicaCount=2
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.7.1/deploy/static/provider/cloud/deploy.yaml
 
 # Assign managed identity of cluster’s node pools DNS Zone Contributor rights on to Custom Domain DNS zone.
 $TENANT_ID=$(az account show --subscription $SUBSCRIPTION_NAME --query tenantId --output tsv)
@@ -42,23 +37,7 @@ az role assignment create --assignee $USER_CLIENT_ID --role 'DNS Zone Contributo
 #Deploy external DNS
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm repo update
-helm install external-dns bitnami/external-dns --namespace i$INGRESS_NAMESPCAE --set provider=azure --set txtOwnerId=$DEPLOYMENT_NAME --set policy=sync --set azure.resourceGroup=$RESOURCE_GROUP_NAME --set azure.tenantId=$TENANT_ID --set azure.subscriptionId=$SUBSCRIPTION_ID --set azure.useManagedIdentityExtension=true --set azure.userAssignedIdentityID=$USER_CLIENT_ID
-
-# Label the cert-manager namespace to disable resource validation
-kubectl label namespace $INGRESS_NAMESPCAE cert-manager.io/disable-validation=true
-
-# Add the Jetstack Helm repository
-helm repo add jetstack https://charts.jetstack.io
-helm repo update
-
-# Install CRDs with kubectl
-kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.7.1/cert-manager.crds.yaml
-
-# Install the cert-manager Helm chart
-helm install cert-manager jetstack/cert-manager --namespace $INGRESS_NAMESPCAE --version v1.7.1
-
-# Create issuer
-kubectl apply -f ../k8s/cluster-issuer.yaml --namespace $INGRESS_NAMESPCAE
+helm install external-dns bitnami/external-dns --namespace $INGRESS_NAMESPCAE --set provider=azure --set txtOwnerId=$DEPLOYMENT_NAME --set policy=sync --set azure.resourceGroup=$RESOURCE_GROUP_NAME --set azure.tenantId=$TENANT_ID --set azure.subscriptionId=$SUBSCRIPTION_ID --set azure.useManagedIdentityExtension=true --set azure.userAssignedIdentityID=$USER_CLIENT_ID
 
 # Generete a secret:
 kubectl create secret generic pgpassword --from-literal PGPASSWORD=azerty --namespace $INGRESS_NAMESPCAE
