@@ -1,0 +1,25 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: cert-manager-issuer
+  namespace: default
+spec:
+  acme:
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    email: mid.rania@gmail.com
+    privateKeySecretRef:
+      name: letsencrypt
+    solvers:
+      - selector:
+        dns01:
+          azureDNS:
+            clientID: 65bea8b6-e082-46b1-be89-205246840410
+            clientSecretSecretRef:
+              name: azuredns-config
+              key: client-secret
+            subscriptionID: 5dfcf723-ea7b-4a89-b344-86968954d351
+            tenantID: dbd6664d-4eb9-46eb-99d8-5c43ba153c61
+            resourceGroupName: pfarg
+            hostedZoneName: ambassamart.store
+            # Azure Cloud Environment, default to AzurePublicCloud
+            environment: AzurePublicCloud

@@ -7,6 +7,7 @@ $SUBSCRIPTION_NAME='AzureForStudents'
 $CUSTOM_DOMAIN='ambassamart.store'
 $INGRESS_NAMESPCAE='default'
 
+
 az login
 # Create the resource group
 az group create --name $RESOURCE_GROUP_NAME --location $LOCATION

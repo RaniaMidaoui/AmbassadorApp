@@ -3,27 +3,38 @@ kind: Ingress
 metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: 'false'
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: 'true'
+    nginx.ingress.kubernetes.io/tls-acme: 'true'
+    certmanager.k8s.io/issuer: "letsencrypt"
+    certmanager.k8s.io/acme-challenge-type: dns01
   name: ingress-app
+
 spec:
-  ingressClassName: nginx
+  tls:
+    - hosts:
+        - admin.ambassamart.store
+        - ambassador.ambassamart.store
+      secretName: wildcard1
   rules:
-  - host: admin.ambassamart.store
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: adminfront
-            port:
-              number: 80
-  - host: ambassador.ambassamart.store
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: ambassadorfront
-            port:
-              number: 80
+    - host: admin.ambassamart.store
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: adminfront
+              port:
+                number: 80
+    - host: ambassador.ambassamart.store
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: ambassadorfront
+              port:
+                number: 80

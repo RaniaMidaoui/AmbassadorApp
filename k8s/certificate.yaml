@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wildcard
+  namespace: default
+spec:
+  secretName: wildcard
+  issuerRef:
+    name: letsencrypt
+    kind: ClusterIssuer
+  commonName: '*.ambassamart.store'
+  dnsNames:
+  - ambassamart.store

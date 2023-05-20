@@ -9,8 +9,8 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
   app.use(cookieParser());
   app.enableCors({
-    // origin: ['http://localhost:4000', 'http://localhost:3000', 'http://localhost:5200'],
-    origin: ['http://ambassador:4000', 'http://next:3000', 'http://admin:5200', 'http://localhost:4000', 'http://localhost:3000', 'http://localhost:5200'],
+    origin: "*",
+    //origin: ['http://ambassador:4000', 'http://next:3000', 'http://admin:5200', 'http://localhost:4000', 'http://localhost:3000', 'http://localhost:5200'],
     credentials: true,
   });
   await app.listen(8000);

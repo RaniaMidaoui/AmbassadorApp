@@ -30,7 +30,7 @@ services:
 
   backend:
     container_name: backend
-    image: raniamidoaui/backend
+    image: raniamidaoui/backend
     
     build:
       context: ./Ambassador_App_NestJs-main/Ambassador_App_NestJs-main
