@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: next
-        image: sadook/next
+        image: raniamidaoui/nextfront
         ports:
         - containerPort: 3000
 
@@ -40,6 +40,6 @@ spec:
     spec:
       containers:
       - name: nextnginx
-        image: sadook/nextnginx
+        image: raniamidaoui/nextfront
         ports:
         - containerPort: 80
