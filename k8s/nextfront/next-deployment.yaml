@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: next
+  labels:
+    app: next
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: next
+  template:
+    metadata:
+      labels:
+        app: next
+    spec:
+      containers:
+      - name: next
+        image: sadook/next
+        ports:
+        - containerPort: 3000
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nextfront
+  labels:
+    app: nextfront
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nextfront
+  template:
+    metadata:
+      labels:
+        app: nextfront
+    spec:
+      containers:
+      - name: nextnginx
+        image: sadook/nextnginx
+        ports:
+        - containerPort: 80
