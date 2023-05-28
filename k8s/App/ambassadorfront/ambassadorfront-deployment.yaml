@@ -19,3 +19,4 @@ spec:
         image: raniamidaoui/ambass-app
         ports:
         - containerPort: 80
+        imagePullPolicy: Always

@@ -19,3 +19,4 @@ spec:
         image: raniamidaoui/admin-app
         ports:
         - containerPort: 80
+        
