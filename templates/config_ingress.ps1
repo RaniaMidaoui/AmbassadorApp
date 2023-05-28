@@ -19,8 +19,8 @@ helm install cert-manager jetstack/cert-manager --namespace $INGRESS_NAMESPCAE -
 
 
 # Create DNS records
-az network dns record-set a add-record -g $RESOURCE_GROUP_NAME --ttl 3600 -z $CUSTOM_DOMAIN -n admin -a 20.166.223.121
-az network dns record-set a add-record -g $RESOURCE_GROUP_NAME --ttl 3600 -z $CUSTOM_DOMAIN -n ambassador -a 20.166.223.121
+az network dns record-set a add-record -g $RESOURCE_GROUP_NAME --ttl 3600 -z $CUSTOM_DOMAIN -n admin -a 20.67.161.72
+az network dns record-set a add-record -g $RESOURCE_GROUP_NAME --ttl 3600 -z $CUSTOM_DOMAIN -n ambassador -a 20.67.161.72
 az network dns record-set a list -g $RESOURCE_GROUP_NAME -z $CUSTOM_DOMAIN
 
 $AZURE_CERT_MANAGER_SP_NAME='aksprincipalname'
