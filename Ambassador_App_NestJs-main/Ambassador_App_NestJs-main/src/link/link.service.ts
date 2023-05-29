@@ -29,7 +29,7 @@ export class LinkService {
       where: {
         user
       },
-      relations: ['orders']
+      relations: ['orders', 'orders.orderItems']
     });
 
     return links.map(link => {
