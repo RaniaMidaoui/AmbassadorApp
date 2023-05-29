@@ -36,7 +36,7 @@ class Register extends Component {
         return (
             <main className="form-signin">
                 <form onSubmit={this.submit}>
-                    <h1 className="h3 mb-3 fw-normal">Please register!!!!!!!!!</h1>
+                    <h1 className="h3 mb-3 fw-normal">Please register</h1>
 
                     <div className="form-floating">
                         <input className="form-control" placeholder="First Name"
