@@ -8,7 +8,7 @@ import { AuthGuard } from 'src/user/guards/auth.guard';
 export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 
-  @Post('ambassador/orders')
+  @Post('checkout/orders')
   create(@Body() createOrderDto: CreateOrderDto) {
     return this.orderService.create(createOrderDto);
   }
@@ -35,7 +35,7 @@ export class OrderController {
     return this.orderService.remove(+id);
   }
 
-  @Post('checkout/orders')
+  @Post('checkout/orders/confirm')
   confirm(@Body('source') source: string) {
         return this.orderService.confirm(source);
     }
