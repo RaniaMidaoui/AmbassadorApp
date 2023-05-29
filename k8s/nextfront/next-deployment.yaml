@@ -40,6 +40,6 @@ spec:
     spec:
       containers:
       - name: nextnginx
-        image: raniamidaoui/nextfront::$(Build.BuildId)
+        image: raniamidaoui/nextnginx:$(Build.BuildId)
         ports:
         - containerPort: 80
