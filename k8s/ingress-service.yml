@@ -16,6 +16,7 @@ spec:
     - hosts:
         - admin.ambassamart.store
         - ambassador.ambassamart.store
+        - checkout.ambassamart.store
       secretName: wildcard1
   rules:
     - host: admin.ambassamart.store
@@ -36,5 +37,15 @@ spec:
           backend:
             service:
               name: ambassadorfront
+              port:
+                number: 80
+    - host: checkout.ambassamart.store
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: nextfront
               port:
                 number: 80
