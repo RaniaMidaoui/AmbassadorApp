@@ -11,7 +11,7 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 ENV NEXT_TELEMETRY_DISABLED 1
-
+RUN npx browserslist@latest --update-db
 RUN npm run build
 
 FROM node:16-alpine AS runner
