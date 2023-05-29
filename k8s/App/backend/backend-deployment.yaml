@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: raniamidaoui/backend
+        image: raniamidaoui/backend:$(Build.BuildId)
         ports:
         - containerPort: 8000
         

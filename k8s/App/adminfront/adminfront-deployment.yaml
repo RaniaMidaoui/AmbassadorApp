@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: admin-app-dev
-        image: raniamidaoui/admin-app
+        image: raniamidaoui/admin-app:$(Build.BuildId)
         ports:
         - containerPort: 80
         

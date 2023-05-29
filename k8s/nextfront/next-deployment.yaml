@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: next
-        image: raniamidaoui/nextfront
+        image: raniamidaoui/nextfront:$(Build.BuildId)
         ports:
         - containerPort: 3000
 
