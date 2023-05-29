@@ -63,18 +63,18 @@ export default function Home() {
         e.preventDefault();
 
         const {data} = await axios.post(`${constants.endpoint}/orders`, {
-            firstname,
-            lastname,
-            email,
-            address,
-            country,
-            city,
-            zip,
-            code,
+            first_name: firstname,
+            last_name: lastname,
+            email: email,
+            address: address,
+            country: country,
+            city: city,
+            zip: zip,
+            code: code,
             products: quantities
         });
 
-        const stripe = await loadStripe(process.env.NEXT_STRIPE_API_KEY);
+        const stripe = await loadStripe(process.env.NEXT_PUBLIC_API_KEY);
 
         stripe.redirectToCheckout({
             sessionId: data.id
