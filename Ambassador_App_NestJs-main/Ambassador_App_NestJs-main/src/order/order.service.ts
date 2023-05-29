@@ -139,7 +139,7 @@ export class OrderService {
 
         await this.orderRepository.update(order.id, {complete: true});
 
-        await this.eventEmitter.emit('order.completed', order);
+        // await this.eventEmitter.emit('order.completed', order);
 
         return {
             message: 'success'
