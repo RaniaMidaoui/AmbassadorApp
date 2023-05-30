@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: next
-        image: sadook/nextfront
+        image: sadook/next
         ports:
         - containerPort: 3000
 
