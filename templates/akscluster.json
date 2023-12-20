@@ -4,7 +4,7 @@
     "parameters": {
         "aksClusterName": {
             "type": "string",
-            "defaultValue": "pfacluster",
+            "defaultValue": "projectcluster",
             "metadata": {
                 "description": "The name of the Managed Cluster resource."
             }
@@ -66,13 +66,13 @@
             "location": "[parameters('location')]",
             "name": "[parameters('aksClusterName')]",
             "tags": {
-                "displayname": "pfacluster"
+                "displayname": "projectcluster"
             },
             "identity": {
                 "type": "SystemAssigned"
             },
             "properties": {
-                "kubernetesVersion": "1.26.3",
+                "kubernetesVersion": "1.27.7",
                 "enableRBAC": true,
                 "dnsPrefix": "[parameters('dnsPrefix')]",
                 "agentPoolProfiles": [

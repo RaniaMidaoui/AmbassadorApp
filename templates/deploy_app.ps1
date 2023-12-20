@@ -1,8 +1,8 @@
-$RESOURCE_GROUP_NAME='pfarg'
-$AKS_NAME='pfacluster'
+$RESOURCE_GROUP_NAME='projectrg'
+$AKS_NAME='projectcluster'
 $LOCATION='northeurope'
 $NODE_SIZE='Standard_B2s'
-$DEPLOYMENT_NAME='pfacluster'
+$DEPLOYMENT_NAME='projectcluster'
 $SUBSCRIPTION_NAME='AzureForStudents'
 $CUSTOM_DOMAIN='ambassamart.store'
 $INGRESS_NAMESPCAE='default'
@@ -13,18 +13,16 @@ az login
 az group create --name $RESOURCE_GROUP_NAME --location $LOCATION
 
 # Deploy the AKS cluster from template
-az deployment group create --name $DEPLOYMENT_NAME --resource-group $RESOURCE_GROUP_NAME --template-file "./akscluster.json"  --parameters aksClusterName=$AKS_NAME dnsPrefix=pfa agentCount=1 agentVMSize=$NODE_SIZE
+az deployment group create --name $DEPLOYMENT_NAME --resource-group $RESOURCE_GROUP_NAME --template-file "./akscluster.json"  --parameters aksClusterName=$AKS_NAME dnsPrefix=prj agentCount=1 agentVMSize=$NODE_SIZE
 
 # Connect to the cluster
 az aks get-credentials --resource-group $RESOURCE_GROUP_NAME --name $DEPLOYMENT_NAME
 
-# Configure ingress and TLS
 # Create a DNS Zone for custom Domain
 az network dns zone create -g $RESOURCE_GROUP_NAME -n $CUSTOM_DOMAIN
 
 # Create a namespace for ingress resources
 #kubectl create namespace $INGRESS_NAMESPCAE
-
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.7.1/deploy/static/provider/cloud/deploy.yaml
 
 # Assign managed identity of cluster’s node pools DNS Zone Contributor rights on to Custom Domain DNS zone.

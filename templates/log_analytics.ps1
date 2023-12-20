@@ -1,8 +1,8 @@
-$RESOURCE_GROUP_NAME='pfarg'
-$AKS_NAME='pfacluster'
+$RESOURCE_GROUP_NAME='projectrg'
+$AKS_NAME='projectcluster'
 $LOCATION='northeurope'
 $NODE_SIZE='Standard_B2s'
-$DEPLOYMENT_NAME='pfacluster'
+$DEPLOYMENT_NAME='projectcluster'
 $SUBSCRIPTION_NAME='AzureForStudents'
 $CUSTOM_DOMAIN='ambassamart.store'
 $INGRESS_NAMESPCAE='default'
@@ -31,10 +31,10 @@ helm install stable grafana/grafana -n monitoring
 kubectl get pods -n monitoring
 
 # Expose Grafana, port forward to the Grafana Service
-kubectl port-forward -n monitoring stable-grafana-5ff7f9657-6jcpj 3000
+kubectl port-forward -n monitoring stable-grafana-54f4f99789-mtb97 3000
 
 # Get Grafana admin password (base64 format, needs to be decoded) #10956
-kubectl get secret --namespace monitoring stable-grafana -o jsonpath="{.data.admin-password}
+kubectl get secret --namespace monitoring stable-grafana -o jsonpath="{.data.admin-password}"
 
 
 

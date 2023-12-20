@@ -1,8 +1,8 @@
-$RESOURCE_GROUP_NAME='pfarg'
-$AKS_NAME='pfacluster'
+$RESOURCE_GROUP_NAME='projectrg'
+$AKS_NAME='projectcluster'
 $LOCATION='northeurope'
 $NODE_SIZE='Standard_B2s'
-$DEPLOYMENT_NAME='pfacluster'
+$DEPLOYMENT_NAME='projectcluster'
 $SUBSCRIPTION_NAME='AzureForStudents'
 $CUSTOM_DOMAIN='ambassamart.store'
 $INGRESS_NAMESPCAE='default'
@@ -19,9 +19,9 @@ helm install cert-manager jetstack/cert-manager --namespace $INGRESS_NAMESPCAE -
 
 
 # Create DNS records
-az network dns record-set a add-record -g $RESOURCE_GROUP_NAME --ttl 3600 -z $CUSTOM_DOMAIN -n admin -a 20.105.42.254
-az network dns record-set a add-record -g $RESOURCE_GROUP_NAME --ttl 3600 -z $CUSTOM_DOMAIN -n ambassador -a 20.105.42.254
-az network dns record-set a add-record -g $RESOURCE_GROUP_NAME --ttl 3600 -z $CUSTOM_DOMAIN -n checkout -a 20.105.42.254
+az network dns record-set a add-record -g $RESOURCE_GROUP_NAME --ttl 3600 -z $CUSTOM_DOMAIN -n admin -a 4.231.130.92
+az network dns record-set a add-record -g $RESOURCE_GROUP_NAME --ttl 3600 -z $CUSTOM_DOMAIN -n ambassador -a 4.231.130.92
+az network dns record-set a add-record -g $RESOURCE_GROUP_NAME --ttl 3600 -z $CUSTOM_DOMAIN -n checkout -a 4.231.130.92
 az network dns record-set a list -g $RESOURCE_GROUP_NAME -z $CUSTOM_DOMAIN
 
 $AZURE_CERT_MANAGER_SP_NAME='aksprincipalname'
