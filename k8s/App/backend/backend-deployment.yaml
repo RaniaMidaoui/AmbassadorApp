@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
       - name: api
-        image: raniamidaoui/backend:$(Build.BuildId)
+        image: raniamidaoui/backend:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 8000
         

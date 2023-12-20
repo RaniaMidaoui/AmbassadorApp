@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: ambass-app-dev
-        image: raniamidaoui/ambass-app:$(Build.BuildId)
+        image: raniamidaoui/ambass-app:latest
         ports:
         - containerPort: 80
         imagePullPolicy: Always
