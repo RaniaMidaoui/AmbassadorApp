@@ -4,7 +4,7 @@ $LOCATION='northeurope'
 $NODE_SIZE='Standard_B2s'
 $DEPLOYMENT_NAME='projectcluster'
 $SUBSCRIPTION_NAME='AzureForStudents'
-$CUSTOM_DOMAIN='ambassamart.store'
+$CUSTOM_DOMAIN='ambassamart.shop'
 $INGRESS_NAMESPCAE='default'
 
 

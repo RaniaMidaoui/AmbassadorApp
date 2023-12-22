@@ -14,12 +14,12 @@ metadata:
 spec:
   tls:
     - hosts:
-        - admin.ambassamart.store
-        - ambassador.ambassamart.store
-        - checkout.ambassamart.store
+        - admin.ambassamart.shop
+        - ambassador.ambassamart.shop
+        - checkout.ambassamart.shop
       secretName: wildcard1
   rules:
-    - host: admin.ambassamart.store
+    - host: admin.ambassamart.shop
       http:
         paths:
         - path: /
@@ -29,7 +29,7 @@ spec:
               name: adminfront
               port:
                 number: 80
-    - host: ambassador.ambassamart.store
+    - host: ambassador.ambassamart.shop
       http:
         paths:
         - path: /
@@ -39,7 +39,7 @@ spec:
               name: ambassadorfront
               port:
                 number: 80
-    - host: checkout.ambassamart.store
+    - host: checkout.ambassamart.shop
       http:
         paths:
         - path: /

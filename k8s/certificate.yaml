@@ -8,6 +8,7 @@ spec:
   issuerRef:
     name: letsencrypt
     kind: ClusterIssuer
-  commonName: '*.ambassamart.store'
+  commonName: '*.ambassamart.shop'
   dnsNames:
-  - ambassamart.store
+  - '*.ambassamart.shop'
+  - ambassamart.shop
