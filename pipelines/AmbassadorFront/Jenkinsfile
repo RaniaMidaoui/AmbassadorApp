@@ -16,7 +16,7 @@ pipeline {
             steps {
                 echo "Docker Build"
                 script{
-                    dockerImg = docker.build("${REGISTRY}/${IMAGE_NAME}:${IMAGE_VERSION}", "./Ambassador_App_Frontend-main/react-admin") 
+                    dockerImg = docker.build("${REGISTRY}/${IMAGE_NAME}:${IMAGE_VERSION}", "./Ambassador_App_Frontend-main/react-ambassador") 
                 }
             }
             post{
