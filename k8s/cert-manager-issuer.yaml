@@ -19,7 +19,7 @@ spec:
               key: client-secret
             subscriptionID: 5dfcf723-ea7b-4a89-b344-86968954d351
             tenantID: dbd6664d-4eb9-46eb-99d8-5c43ba153c61
-            resourceGroupName: pfarg
+            resourceGroupName: projectrg
             hostedZoneName: ambassamart.shop
             # Azure Cloud Environment, default to AzurePublicCloud
             environment: AzurePublicCloud

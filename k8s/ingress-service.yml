@@ -3,12 +3,12 @@ kind: Ingress
 metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/ssl-redirect: 'false'
+    # nginx.ingress.kubernetes.io/ssl-redirect: 'false'
     kubernetes.io/ingress.class: nginx
-    kubernetes.io/tls-acme: 'true'
-    nginx.ingress.kubernetes.io/tls-acme: 'true'
+    # kubernetes.io/tls-acme: 'true'
+    # nginx.ingress.kubernetes.io/tls-acme: 'true'
     certmanager.k8s.io/issuer: "letsencrypt"
-    certmanager.k8s.io/acme-challenge-type: dns01
+    # certmanager.k8s.io/acme-challenge-type: dns01
   name: ingress-app
 
 spec:
@@ -17,7 +17,8 @@ spec:
         - admin.ambassamart.shop
         - ambassador.ambassamart.shop
         - checkout.ambassamart.shop
-      secretName: wildcard1
+        - '*.ambassamart.shop'
+      secretName: wildcard
   rules:
     - host: admin.ambassamart.shop
       http:
