@@ -5,6 +5,9 @@ pipeline {
       IMAGE_NAME= "nextfront"
       IMAGE_VERSION = "1.0"
       REGISTRY_CRED = 'docker_creds'
+      K8S_CONFIG_NAME="kubeconfig"
+      K8S_NAMESPACE = 'default'
+      K8S_DEPLOYMENT_NAME = "next"
     }
 
     agent any
@@ -44,6 +47,19 @@ pipeline {
                     failure{
                         echo "Push Failed"
                     }
+            }
+        }
+
+        
+        stage('Deploy') {
+            steps {
+                script{
+                    docker.image('bitnami/kubectl').inside("--entrypoint=''"){
+                        withKubeConfig([credentialsId: "$K8S_CONFIG_NAME", namespace: "$K8S_NAMESPACE"]) {
+                            sh "kubectl -n \${K8S_NAMESPACE} rollout restart deployment.apps/\${K8S_DEPLOYMENT_NAME}"
+                        }
+                    }
+                }                
             }
         }
 
