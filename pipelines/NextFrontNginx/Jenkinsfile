@@ -19,7 +19,7 @@ pipeline {
             steps {
                 echo "Docker Build"
                 script{
-                    dockerImg = docker.build("${REGISTRY}/${IMAGE_NAME}:${IMAGE_VERSION}", "Ambassador_App_Frontend-main/Ambassador_App_Frontend-main/react-admin/nginx_for_checkout/") 
+                    dockerImg = docker.build("${REGISTRY}/${IMAGE_NAME}:${IMAGE_VERSION}", "Ambassador_App_Frontend-main/Ambassador_App_Frontend-main/nginx_for_checkout/") 
                 }
             }
             post{
