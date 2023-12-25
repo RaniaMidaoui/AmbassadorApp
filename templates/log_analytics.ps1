@@ -31,7 +31,7 @@ helm install stable grafana/grafana -n monitoring
 kubectl get pods -n monitoring
 
 # # Expose Grafana, port forward to the Grafana Service
-kubectl port-forward -n monitoring stable-grafana-7fbf548db9-h94rt 3000
+# kubectl port-forward -n monitoring stable-grafana-7fbf548db9-h94rt 3000
 
 # Get Grafana admin password (base64 format, needs to be decoded) #10956
 kubectl get secret --namespace monitoring stable-grafana -o jsonpath="{.data.admin-password}"

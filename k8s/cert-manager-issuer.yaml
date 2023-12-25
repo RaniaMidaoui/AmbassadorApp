@@ -2,24 +2,23 @@ apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
   name: letsencrypt
-  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
 spec:
   acme:
-    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    server: https://acme-v02.api.letsencrypt.org/directory
     email: rania.midaoui@insat.ucar.tn
     privateKeySecretRef:
       name: letsencrypt
     solvers:
-      - selector:
-        dns01:
+      - dns01:
           azureDNS:
-            clientID: 165a24fa-d162-4cfa-969a-984cb3f4c92b
-            clientSecretSecretRef:
-              name: azuredns-config
-              key: client-secret
             subscriptionID: 5dfcf723-ea7b-4a89-b344-86968954d351
-            tenantID: dbd6664d-4eb9-46eb-99d8-5c43ba153c61
             resourceGroupName: projectrg
             hostedZoneName: ambassamart.shop
             # Azure Cloud Environment, default to AzurePublicCloud
             environment: AzurePublicCloud
+            # optional, only required if node pools have more than 1 managed identity assigned
+            managedIdentity:
+              # client id of the node pool managed identity
+              clientID: 52971a4e-47a2-4fb4-bc03-30d5dd247a62
