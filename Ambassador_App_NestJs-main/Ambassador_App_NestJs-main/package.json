@@ -62,7 +62,7 @@
     "rxjs": "^7.2.0",
     "slugify": "^1.6.5",
     "stripe": "^11.8.0",
-    "typeorm": "^0.3.11"
+    "typeorm": "^0.3.18"
   },
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",
