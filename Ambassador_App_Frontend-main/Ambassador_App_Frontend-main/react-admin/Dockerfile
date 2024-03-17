@@ -9,7 +9,7 @@ COPY . .
 
 RUN npm run build
 
-FROM --platform=amd64 nginx:alpine
+FROM --platform=amd64 nginx:1.25.4-alpine3.18
 
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 
