@@ -1,4 +1,4 @@
-FROM nginx:alpine
+FROM nginx:1.25.4-alpine3.18
 
 # Remove any existing config files
 RUN rm /etc/nginx/conf.d/*
