@@ -25,7 +25,7 @@
     "ambassadors:rankings": "node dist/commands/rankings.js"
   },
   "dependencies": {
-    "@nestjs-modules/mailer": "^1.8.1",
+    "@nestjs-modules/mailer": "^1.9.1",
     "@nestjs/common": "^9.0.0",
     "@nestjs/config": "^2.2.0",
     "@nestjs/core": "^9.0.0",
@@ -58,7 +58,7 @@
     "postgres": "^3.3.2",
     "redis": "^4.6.4",
     "reflect-metadata": "^0.1.13",
-    "rimraf": "^3.0.2",
+    "rimraf": "^4.0.0",
     "rxjs": "^7.2.0",
     "slugify": "^1.6.5",
     "stripe": "^11.8.0",
